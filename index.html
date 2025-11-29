@@ -13,72 +13,41 @@
   </style>
 </head>
 <body>
-  <h1>Regulatory Update Feed</h1>
-  <p><strong>Snapshot ID:</strong> <code id="snapshot-id"></code></p>
-  <p><strong>Generated at (UTC):</strong> <code id="generated-at"></code></p>
+  <h1>Regulatory Change Feed/h1>
+  <p><strong>Snapshot ID:</strong> <code>STATIC-1234567890</code></p>
+  <p><strong>Generated at (UTC):</strong> <code>2025-01-01T00:00:00.000Z</code></p>
 
   <section class="updates">
     <h2>Latest Updates</h2>
-    <ul id="updates-list"></ul>
+    <ul id="updates-list">
+      <li class="update-item" data-update-id="static-1" data-update-index="0">
+        <div><span class="badge">Topic</span> Capital requirements</div>
+        <div>Article: <code>Art-100-3</code></div>
+        <p>Threshold increased by 12.5% (change level 3).</p>
+      </li>
+      <li class="update-item" data-update-id="static-2" data-update-index="1">
+        <div><span class="badge">Topic</span> KYC / AML obligations</div>
+        <div>Article: <code>Art-101-5</code></div>
+        <p>Additional documentation requirements introduced.</p>
+      </li>
+      <li class="update-item" data-update-id="static-3" data-update-index="2">
+        <div><span class="badge">Topic</span> Reporting thresholds</div>
+        <div>Article: <code>Art-102-2</code></div>
+        <p>Minimum reporting threshold updated for SMEs.</p>
+      </li>
+      <li class="update-item" data-update-id="static-4" data-update-index="3">
+        <div><span class="badge">Topic</span> Consumer protection rules</div>
+        <div>Article: <code>Art-103-4</code></div>
+        <p>New disclosure requirements established.</p>
+      </li>
+      <li class="update-item" data-update-id="static-5" data-update-index="4">
+        <div><span class="badge">Topic</span> Data retention policy</div>
+        <div>Article: <code>Art-104-1</code></div>
+        <p>Retention period clarified for cross-border transfers.</p>
+      </li>
+    </ul>
   </section>
 
-  <script>
-    function generateUpdates() {
-      const topics = [
-        "Capital requirements",
-        "KYC / AML obligations",
-        "Reporting thresholds",
-        "Consumer protection rules",
-        "Data retention policy",
-        "Sanctions screening",
-        "Cross-border transfer rules"
-      ];
-
-      const now = new Date();
-      const snapshotId = Date.now();
-      const generatedAt = now.toISOString();
-
-      const updates = topics.map((topic, index) => {
-        const random = Math.random();
-        const changeLevel = Math.floor(random * 7) + 1;
-        const pct = (random * 30).toFixed(1);
-        const direction = Math.random() > 0.5 ? "increase" : "decrease";
-
-        return {
-          id: `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}-${index}-${snapshotId}`,
-          topic,
-          articleNumber: `Art-${100 + index}-${changeLevel}`,
-          changeSummary: `Regulatory threshold ${direction}d by ${pct}% (change level ${changeLevel}).`
-        };
-      });
-
-      return { snapshotId, generatedAt, updates };
-    }
-
-    function renderUpdates() {
-      const { snapshotId, generatedAt, updates } = generateUpdates();
-
-      document.getElementById("snapshot-id").textContent = snapshotId;
-      document.getElementById("generated-at").textContent = generatedAt;
-
-      const list = document.getElementById("updates-list");
-      list.innerHTML = "";
-
-      updates.forEach((u, idx) => {
-        const li = document.createElement("li");
-        li.className = "update-item";
-        li.dataset.updateId = u.id;
-        li.dataset.updateIndex = idx;
-        li.innerHTML = `
-          <div><span class="badge">Topic</span> ${u.topic}</div>
-          <div>Article: <code>${u.articleNumber}</code></div>
-          <p>${u.changeSummary}</p>
-        `;
-        list.appendChild(li);
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", renderUpdates);
-  </script>
+  <p style="margin-top:1rem; font-size:0.85rem; color:#555;">This page intentionally never changes so diff engines can confirm stability and noise filtering.</p>
 </body>
 </html>
